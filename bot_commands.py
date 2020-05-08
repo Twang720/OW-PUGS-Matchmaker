@@ -161,6 +161,18 @@ def combine(tank, dps, supp):
 
     return [A, B]
 
+def adjust(playerData, winner):
+    for i in playerData.keys():
+        if(playerData[i][team] == winner):
+            role = playerData[i][queue]
+            playerData[i][role] += 100
+        elif(playerData[i][team] != 'none'):
+            role = playerData[i][queue]
+            playerData[i][role] -= 100
+        playerData[i][team] = 'none'
+    
+    return playerData
+
 def main():
     allPlayerData = {
 'usr1':   {'dps': 3944, 'support': 1698, 'tank': 3682, 'queue': 'support'},
